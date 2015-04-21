@@ -29,8 +29,8 @@ app.service('teamService', function($http, $q){
       method: 'GET',
       url: url
     }).then(function(data){
-      console.log('data', data)
-      console.log(data.data.results);
+      console.log('dataAtService1', data)
+      console.log('dataAtService2', data.data.results);
       var results = data.data.results;
       var wins = 0;
       var losses = 0;
@@ -42,8 +42,8 @@ app.service('teamService', function($http, $q){
           losses++;
         }
       }
-      results['wins'] = wins;
-      results['losses'] = losses;
+      results['wins'] = wins; // or results.wins = wins;
+      results['losses'] = losses; // or results.losses = losses;
 
       deferred.resolve(results);
     })

@@ -1,7 +1,8 @@
 var app = angular.module('nbaRoutes');
 
 app.controller('teamCtrl', function($scope, $routeParams, teamService, teamData){
-
+console.log('teamCtrl: routeParams:', $routeParams.team);
+console.log('teamCtrl: teamData', teamData);
 $scope.teamData = teamData;
 $scope.newGame = {};
 $scope.showNewGameForm = false;
@@ -30,11 +31,15 @@ $scope.submitGame = function() {
   teamService.addNewGame($scope.newGame)  
   .then(function() {
     teamService.getTeamData($scope.newGame.homeTeam)
-    .then(function(){ 
-      (data)
+    .then(function(data){ 
+      $scope.teamData = data;
+      $scope.newGame = {};
+      $scope.showNewGameForm = false;
+
     })
-  })
-    
+  });
+
 }
+console.log($scope.teamData)
 
 });
